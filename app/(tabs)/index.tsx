@@ -1,74 +1,136 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { Video } from 'expo-av'; // Import Video from expo-av
+import TurboModuleRegistry from './../../node_modules/@react-native-async-storage/async-storage/lib/module/NativeAsyncStorageModule';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+const HomeScreen = () => {
+  const [classificationResult, setClassificationResult] = useState('');  
+  const videoRef = useRef<Video>(null); // Video reference for playback control
 
-export default function HomeScreen() {
+  const handleFileUpload = () => {
+    setClassificationResult('Result: Anomaly Detected');  
+  };
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
+    <ScrollView style={styles.container}>
+      {/* Header */}
+      <View style={styles.header}>
         <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+          source={require('../../assets/images/logo.jpg')} 
+          style={styles.logo}
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+        <Text style={styles.headerText}>GUARDIAN VISION: IMPROVING PUBLIC SAFETY</Text>
+      </View>
+
+      {/* Main Content */}
+      <View style={styles.mainContent}>
+        {/* Expo AV Video Player */}
+        <Video
+          ref={videoRef}
+          source={require('../../assets/videos/ANOMALY DETECTION.mp4')} // Ensure correct path
+          style={styles.mainVideo}
+          useNativeControls={false} // Enables play/pause controls
+          isLooping={true}
+          shouldPlay={true}
+
+
+          resizeMode="contain"
+          isLooping
+        />
+
+        <Text style={styles.introText}>
+          Welcome to our anomaly detection platform. This system leverages AI-powered technology for real-time detection of abnormal activities.
+        </Text>
+
+        <TouchableOpacity style={styles.button} onPress={handleFileUpload}>
+          <Text style={styles.buttonText}>Test Video or Image</Text>
+        </TouchableOpacity>
+
+        {/* Display Classification Result */}
+        <Text style={styles.resultText}>{classificationResult || 'Upload a video/image to see the result.'}</Text>
+      </View>
+
+      {/* Footer */}
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>About Us</Text>
+        <Text style={styles.footerText}>
+          We are a team of final-year Computer Science students from FAST University, working towards enhancing public safety.
+        </Text>
+      </View>
+    </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    flex: 1,
+    backgroundColor: '#121212',
+  },
+  header: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    padding: 20,
+    backgroundColor: '#004d00',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  logo: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  headerText: {
+    marginLeft: 10,
+    marginRight: 30,
+    fontSize: 18,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  mainContent: {
+    marginTop: 20,
+    padding: 20,
+    backgroundColor: '#1e1e1e',
+    borderRadius: 15,
+  },
+  mainVideo: {
+    width: '100%',
+    height: 200,
+    borderRadius: 10,
+    marginBottom: 15,
+  },
+  introText: {
+    fontSize: 16,
+    color: '#fff',
+    textAlign: 'center',
+    marginBottom: 15,
+  },
+  button: {
+    marginTop: 15,
+    padding: 15,
+    backgroundColor: '#00b300',
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontSize: 18,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  resultText: {
+    marginTop: 20,
+    fontSize: 16,
+    color: '#fff',
+    textAlign: 'center',
+  },
+  footer: {
+    marginTop: 30,
+    padding: 20,
+    backgroundColor: '#004d00',
+    borderRadius: 15,
+  },
+  footerText: {
+    fontSize: 16,
+    color: '#fff',
+    textAlign: 'center',
   },
 });
+
+export default HomeScreen;
