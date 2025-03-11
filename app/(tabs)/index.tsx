@@ -29,7 +29,7 @@ const HomeScreen = () => {
           ref={videoRef}
           source={require('../../assets/videos/ANOMALY DETECTION.mp4')}
           style={styles.mainVideo}
-          useNativeControls={false} // Enables play/pause controls
+          useNativeControls={false} // Enables pla
           isLooping={true}
           shouldPlay={true}
 
