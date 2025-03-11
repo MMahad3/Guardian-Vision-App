@@ -71,7 +71,7 @@ headerText: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center', // Aligns items to center
-    alignItems: 'center', // Aligns items vertically
+    alignItems: 'center', 
     width: '100%',
     maxWidth: 400, // Ensures a good layout on all screens
   },
