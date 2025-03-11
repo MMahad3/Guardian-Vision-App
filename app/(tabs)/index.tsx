@@ -5,7 +5,7 @@ import TurboModuleRegistry from './../../node_modules/@react-native-async-storag
 
 const HomeScreen = () => {
   const [classificationResult, setClassificationResult] = useState('');  
-  const videoRef = useRef<Video>(null); // Video reference for playback control
+  const videoRef = useRef<Video>(null); 
 
   const handleFileUpload = () => {
     setClassificationResult('Result: Anomaly Detected');  
