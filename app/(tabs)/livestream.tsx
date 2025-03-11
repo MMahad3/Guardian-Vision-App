@@ -70,7 +70,7 @@ headerText: {
   gridContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center', // Aligns items to center
+    justifyContent: 'center', 
     alignItems: 'center', 
     width: '100%',
     maxWidth: 400, // Ensures a good layout on all screens
