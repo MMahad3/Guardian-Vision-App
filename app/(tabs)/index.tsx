@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
-import { Video } from 'expo-av'; // Import Video from expo-av
+import { Video } from 'expo-av'; 
 import TurboModuleRegistry from './../../node_modules/@react-native-async-storage/async-storage/lib/module/NativeAsyncStorageModule';
 
 const HomeScreen = () => {
