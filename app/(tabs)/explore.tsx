@@ -52,7 +52,7 @@ const ExploreScreen = () => {
   );
 };
 
-// Styling based on provided theme
+// CSS styling
 const styles = StyleSheet.create({
   container: {
     flex: 1,
