@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Appearance, Image } from 'react-native';
-// import * as BarCodeScanner from 'expo-barcode-scanner'; // QR Code Scanner (Disabled)
+
 import { useRouter } from 'expo-router';
 
 const ExploreScreen = () => {
