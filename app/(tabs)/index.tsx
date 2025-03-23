@@ -50,7 +50,7 @@ const HomeScreen = () => {
         <Text style={styles.resultText}>{classificationResult || 'Upload a video/image to see the result.'}</Text>
       </View>
 
-      {/* Footer */}
+      
       <View style={styles.footer}>
         <Text style={styles.footerText}>About Us</Text>
         <Text style={styles.footerText}>
