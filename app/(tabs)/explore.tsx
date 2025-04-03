@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Appearance, Image } from "rea
 import { useRouter } from "expo-router";
 
 const ExploreScreen = () => {
-  // State for theme (light/dark mode)
+ 
   const [theme, setTheme] = useState(Appearance.getColorScheme());
   const [backendData, setBackendData] = useState(null); // Store data from FastAPI backend
   const router = useRouter(); // Navigation hook
